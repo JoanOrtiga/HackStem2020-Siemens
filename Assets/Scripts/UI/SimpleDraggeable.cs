@@ -4,74 +4,43 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DraggeableWindow : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
+public class SimpleDraggeable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField] private RectTransform dragRectTransform;
-    [SerializeField] private Canvas canvas;
-    [SerializeField] private GameObject panel;
     [SerializeField] private GameObject contentPanel;
+    [SerializeField] private Canvas canvas;
 
-    private Color backgroundColor;
-
-    private bool spawn = false;
-
-    public RectTransform paperBin;
-    public RectTransform blocksPanel;
-
-    private Vector2 cellSize = new Vector2(45,45);
-
-    private Vector2 lastPos = Vector2.zero;
+    private Vector2 cellSize = new Vector2(45, 45);
 
     private bool collisionDetected;
     private bool checkedOnce;
+    private Vector2 lastPos = Vector2.zero;
 
     private void Awake()
     {
         dragRectTransform = GetComponent<RectTransform>();
+        lastPos = dragRectTransform.anchoredPosition;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         dragRectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-    }
 
+   /*     dragRectTransform.anchoredPosition = UIUtility.KeepFullyOnScreen(gameObject, dragRectTransform.anchoredPosition, canvas.GetComponent<RectTransform>());*/
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (!spawn)
-        {
-            Instantiate(gameObject, panel.transform);
-            spawn = true;
-        }
-        else
-        {
-            lastPos = dragRectTransform.anchoredPosition;
-        }
-
-        GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);
-
         transform.SetParent(canvas.gameObject.transform);
         dragRectTransform.SetAsLastSibling();
         transform.localScale = contentPanel.transform.localScale;
 
         collisionDetected = false;
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        GetComponent<Image>().color = new Color(1, 1, 1, 1f);
-
-        if (UIUtility.GetWorldSpaceRect(paperBin).Contains(eventData.position, true))
-        {
-            Destroy(gameObject);
-        }
-
-
-        if (UIUtility.GetWorldSpaceRect(blocksPanel).Contains(eventData.position, true))
-        {
-            Destroy(gameObject);
-        }
-
         transform.SetParent(contentPanel.transform);
         transform.localScale = Vector3.one;
 
@@ -84,10 +53,11 @@ public class DraggeableWindow : MonoBehaviour, IDragHandler, IEndDragHandler, IB
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collisionDetected && !checkedOnce ) {
+        if (collisionDetected && !checkedOnce)
+        {
             if (collision.GetComponent<DraggeableWindow>() != null || collision.GetComponent<SimpleDraggeable>() != null)
             {
-                if(lastPos == Vector2.zero)
+                if (lastPos == Vector2.zero)
                 {
                     Destroy(gameObject);
                 }
