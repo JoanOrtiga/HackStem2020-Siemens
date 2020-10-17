@@ -32,6 +32,8 @@ public class DraggeableWindow : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        print("Hola");
+        Rect rect;
+
+        if(rect.contains)
     }
 }
