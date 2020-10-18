@@ -24,7 +24,7 @@ public class HideShowEditor : MonoBehaviour
     public void ShowEditor()
     {
         Editor.SetActive(true);
-        NoEditor.SetActive(false);
+        //NoEditor.SetActive(false);
     }
 
     
