@@ -833,8 +833,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b84c51386818e943aca431bc2ffc5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 1488754112}
-  Rotate: 0
 --- !u!65 &1024635284
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -953,6 +951,42 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 2143360445}
+    - target: {fileID: 7911767762454096209, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911767762454096209, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911767762454096209, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -1822
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911767762454096209, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911767762454096209, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911767762454096209, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -980
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911767762454096209, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911767762454096209, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911767762552370151, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1080.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 7911767762664260591, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
       propertyPath: programableObject
       value: 
@@ -1136,6 +1170,10 @@ PrefabInstance:
     - target: {fileID: 7911767763605785389, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911767763619304772, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
+      propertyPath: m_Vertical
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7911767763747944692, guid: 7b63bee5e71632e48acedb61697a4962, type: 3}
       propertyPath: m_AnchorMin.y
