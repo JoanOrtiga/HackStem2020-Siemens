@@ -89,4 +89,6 @@ public class CamaraRotation : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + transform.up);
     }
 #endif
+
+
 }
