@@ -8,6 +8,8 @@ using UnityEngine.XR.ARSubsystems;
 
 public class PlcamentManager : MonoBehaviour
 {
+    public GameObject ObjectManager;
+
     public GameObject CharacterParent;
     public GameObject manager;
     public GameObject[] CharacterToPlace;
@@ -44,7 +46,7 @@ public class PlcamentManager : MonoBehaviour
         }
     }
 
-    public void placeObject()
+    public void placeCharacter()
     {
         GameObject playerChoose;
         playerChoose = CharacterToPlace[manager.GetComponent<Manager>().PlayerChose];
@@ -58,5 +60,11 @@ public class PlcamentManager : MonoBehaviour
         objIntant.transform.parent = CharacterParent.transform;
 
 
+    }
+
+    public void placeObj()
+    {
+        print("INTANTANTE");
+        Instantiate(ObjectManager.GetComponent<ObjectManager>().objectChose, this.transform.position, this.transform.rotation);
     }
 }
