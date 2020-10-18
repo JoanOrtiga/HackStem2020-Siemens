@@ -28,6 +28,8 @@ public class DraggeableWindow : MonoBehaviour, IDragHandler, IEndDragHandler, IB
     /// Next Block
     private DraggeableWindow nextBlock;
 
+    private Color blockColor;
+
     private void Awake()
     {
         dragRectTransform = GetComponent<RectTransform>();
@@ -61,7 +63,9 @@ public class DraggeableWindow : MonoBehaviour, IDragHandler, IEndDragHandler, IB
         RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.down, (40 * transform.parent.localScale.x));
 
 
-        transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);
+        blockColor = transform.GetChild(0).GetComponent<Image>().color;
+        blockColor.a = 0.6f;
+        transform.GetChild(0).GetComponent<Image>().color = blockColor;
 
         transform.SetParent(canvas.gameObject.transform);
         dragRectTransform.SetAsLastSibling();
@@ -86,7 +90,8 @@ public class DraggeableWindow : MonoBehaviour, IDragHandler, IEndDragHandler, IB
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+        blockColor.a = 1f;
+        transform.GetChild(0).GetComponent<Image>().color = blockColor;
 
         if (UIUtility.GetWorldSpaceRect(paperBin).Contains(eventData.position, true))
         {
