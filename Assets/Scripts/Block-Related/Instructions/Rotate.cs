@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
-public class Move : CodeBlock
+public class Rotate : CodeBlock
 {
+    public float degrees = 90;
     public float speed = 5f;
-    public float distance = 2f;
 
     private float timeMoving;
 
     public GameObject textField;
 
-    private InputField fspeed, fdistance;
+    private InputField fspeed, fdegrees;
 
     public override void InitObject(GameObject codedObject = null)
     {
@@ -28,23 +27,24 @@ public class Move : CodeBlock
 
         try
         {
-            distance = float.Parse(fdistance.text);
+            degrees = float.Parse(fdegrees.text);
         }
         catch
         {
-            distance = 0;
+            degrees = 0;
         }
 
-        timeMoving = distance / speed;
+
+        timeMoving = degrees / speed;
     }
 
     public override void UpdateObject(GameObject codedObject = null, Queue<CodeBlock> blockList = null)
     {
         timeMoving -= Time.deltaTime;
-        
+
         if (timeMoving >= 0)
         {
-            codedObject.GetComponent<Rigidbody>().MovePosition(codedObject.transform.position + transform.forward * speed * Time.deltaTime);
+            codedObject.transform.Rotate(new Vector3(0, speed*Time.deltaTime, 0));
         }
         else
         {
@@ -57,10 +57,10 @@ public class Move : CodeBlock
         GameObject text = transform.GetChild(0).GetChild(0).gameObject;
         GameObject textX = Instantiate(text, text.transform.parent);
 
-        textX.GetComponent<Text>().text = "| Distance:";
+        textX.GetComponent<Text>().text = "| Degrees:";
         GameObject textF = Instantiate(textField, text.transform.parent);
 
-        fdistance = textF.transform.GetChild(0).GetComponent<InputField>();
+        fdegrees = textF.transform.GetChild(0).GetComponent<InputField>();
 
         GameObject textX2 = Instantiate(text, text.transform.parent);
 
