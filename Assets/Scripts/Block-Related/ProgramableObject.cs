@@ -34,10 +34,7 @@ public class ProgramableObject : MonoBehaviour
         {
             if(blockList.Count != 0)
             {
-                
                 blockList.ElementAt(0).UpdateObject(gameObject, blockList);
-
-                
             }
 
             yield return null;
