@@ -25,6 +25,9 @@ public class DraggeableWindow : MonoBehaviour, IDragHandler, IEndDragHandler, IB
     private bool collisionDetected;
     private bool checkedOnce;
 
+    /// Next Block
+    private DraggeableWindow nextBlock;
+
     private void Awake()
     {
         dragRectTransform = GetComponent<RectTransform>();
@@ -33,6 +36,11 @@ public class DraggeableWindow : MonoBehaviour, IDragHandler, IEndDragHandler, IB
     public void OnDrag(PointerEventData eventData)
     {
         dragRectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+
+        if (nextBlock != null)
+        {
+            nextBlock.OnDrag(eventData);
+        }
     }
 
 
@@ -42,24 +50,43 @@ public class DraggeableWindow : MonoBehaviour, IDragHandler, IEndDragHandler, IB
         {
             Instantiate(gameObject, panel.transform);
             spawn = true;
+
+            transform.GetComponent<CodeBlock>().EditChildParameters();
         }
         else
         {
             lastPos = dragRectTransform.anchoredPosition;
         }
 
-        GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.down, (40 * transform.parent.localScale.x));
+
+
+        transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);
 
         transform.SetParent(canvas.gameObject.transform);
         dragRectTransform.SetAsLastSibling();
         transform.localScale = contentPanel.transform.localScale;
 
         collisionDetected = false;
+
+        if (ray)
+        {
+            if (ray.collider.GetComponent<DraggeableWindow>() != null)
+            {
+                nextBlock = ray.collider.GetComponent<DraggeableWindow>();
+                nextBlock.OnBeginDrag(eventData);
+            }
+           
+        }
+        else
+        {
+            nextBlock = null;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+        transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1f);
 
         if (UIUtility.GetWorldSpaceRect(paperBin).Contains(eventData.position, true))
         {
@@ -80,6 +107,11 @@ public class DraggeableWindow : MonoBehaviour, IDragHandler, IEndDragHandler, IB
         collisionDetected = true;
         checkedOnce = false;
         StartCoroutine(ResetCollision());
+
+        if (nextBlock != null)
+        {
+            nextBlock.OnEndDrag(eventData);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
