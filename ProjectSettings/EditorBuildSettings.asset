@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/noARScean.unity
-    guid: 2d8f801a9c2b6db4b81c0496b50b8990
-  - enabled: 1
     path: Assets/Scenes/ARScenem_Menu.unity
     guid: b9bba64659be9204a871b417eeceeca7
   - enabled: 1
@@ -20,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/noARScean.unity
+    guid: 2d8f801a9c2b6db4b81c0496b50b8990
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: a8d56cdeb9d821244878c9084134b813, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7bf8e3b31686a4846a61a58b6475322d, type: 2}
