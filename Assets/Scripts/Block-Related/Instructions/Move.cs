@@ -44,7 +44,7 @@ public class Move : CodeBlock
         
         if (timeMoving >= 0)
         {
-            codedObject.GetComponent<Rigidbody>().MovePosition(codedObject.transform.position + transform.forward * speed * Time.deltaTime);
+            codedObject.GetComponent<Rigidbody>().MovePosition(codedObject.transform.position + transform.forward* speed * Time.deltaTime);
         }
         else
         {

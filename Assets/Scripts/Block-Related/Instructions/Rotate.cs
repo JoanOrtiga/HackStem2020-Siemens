@@ -44,7 +44,8 @@ public class Rotate : CodeBlock
 
         if (timeMoving >= 0)
         {
-            codedObject.transform.Rotate(new Vector3(0, speed*Time.deltaTime, 0));
+          //  codedObject.transform.Rotate(new Vector3(0, speed*Time.deltaTime, 0));
+            codedObject.transform.localRotation = Quaternion.Euler(codedObject.transform.localRotation.x, codedObject.transform.localRotation.y + speed * Time.deltaTime, codedObject.transform.localRotation.z);
         }
         else
         {
